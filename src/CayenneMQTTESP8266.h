@@ -18,7 +18,6 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEMQTTESP8266_h
 #define _CAYENNEMQTTESP8266_h
 
-#include <ESP8266WiFi.h>
 #include "CayenneUtils/CayenneDefines.h"
 #include "CayenneMQTTWiFiClient.h"
 
