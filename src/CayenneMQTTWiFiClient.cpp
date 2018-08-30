@@ -1,7 +1,9 @@
 #include "CayenneMQTTWiFiClient.h"
 #include <WiFi.h>
 
+#ifdef NO_GLOBAL_CAYENNE
 CayenneMQTTWiFiClient Cayenne;
+#endif
 
 void CayenneMQTTWiFiClient::begin(const char* username, const char* password, const char* clientID, const char* ssid, const char* wifiPassword)
 {

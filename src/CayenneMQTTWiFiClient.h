@@ -52,6 +52,8 @@ private:
 	WiFiClient _wifiClient;
 };
 
+#ifdef NO_GLOBAL_CAYENNE
 extern CayenneMQTTWiFiClient Cayenne;
+#endif
 
 #endif

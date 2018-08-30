@@ -259,7 +259,7 @@ private:
 	*/
 	void pollChannels(uint32_t channelArray[]);
 #endif
-
+public:
 	static CayenneMQTTClient _mqttClient;
 	Network _network;
 };
