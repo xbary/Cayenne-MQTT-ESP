@@ -1,7 +1,7 @@
 #include "CayenneMQTTWiFiClient.h"
 #include <WiFi.h>
 
-#ifdef NO_GLOBAL_CAYENNE
+#ifndef NO_GLOBAL_CAYENNE
 CayenneMQTTWiFiClient Cayenne;
 #endif
 
