@@ -1,4 +1,6 @@
 #include "CayenneArduinoMQTTClient.h"
+#include "CayenneArduinoDefines.h"
+#include "CayenneMQTTClient/CayenneMQTTClient.h"
 
 CayenneMQTTClient CayenneArduinoMQTTClient::_mqttClient;
 
@@ -144,12 +146,12 @@ void CayenneArduinoMQTTClient::connect()
 	do {
 		if (!NetworkConnect(&_network, CAYENNE_DOMAIN, CAYENNE_PORT)) {
 			CAYENNE_LOG("Network connect failed");
-			delay(1000);
+			return;
 		}
 		else if ((error = CayenneMQTTConnect(&_mqttClient)) != MQTT_SUCCESS) {
 			CAYENNE_LOG("MQTT connect failed, error %d", error);
 			NetworkDisconnect(&_network);
-			delay(1000);
+			return;
 		}
 	}
 
@@ -207,8 +209,8 @@ void CayenneArduinoMQTTClient::publishDeviceInfo()
 	publishData(SYS_CPU_SPEED_TOPIC, CAYENNE_NO_CHANNEL, F_CPU);
 	publishData(SYS_VERSION_TOPIC, CAYENNE_NO_CHANNEL, CAYENNE_FLASH(CAYENNE_VERSION));
 }
-
-template <typename T>
+/*
+template <typename T> 
 void CayenneArduinoMQTTClient::virtualWrite(unsigned int channel, const T& data, const char* type, const char* unit)
 {
 	publishData(DATA_TOPIC, channel, data, type, unit);
@@ -218,7 +220,7 @@ void CayenneArduinoMQTTClient::virtualWrite(unsigned int channel, const CayenneD
 {
 	publishData(DATA_TOPIC, channel, values.getArray(), values.getCount(), type);
 }
-
+*/
 #ifdef CAYENNE_USING_PROGMEM
 void CayenneArduinoMQTTClient::virtualWrite(unsigned int channel, const T& data, const __FlashStringHelper* type, const __FlashStringHelper* unit = NULL)
 {

@@ -1,5 +1,6 @@
 #include "CayenneMQTTWiFiClient.h"
 #include <WiFi.h>
+#include <xb_board.h>
 
 #ifndef NO_GLOBAL_CAYENNE
 CayenneMQTTWiFiClient Cayenne;
@@ -37,6 +38,7 @@ void CayenneMQTTWiFiClient::begin(const char* username, const char* password, co
 * @param password Cayenne password
 * @param clientID Cayennne client ID
 */
+#include <xb_board.h>
 void CayenneMQTTWiFiClient::begin(const char* username, const char* password, const char* clientID)
 {
 	if (WiFi.status() != WL_CONNECTED) {

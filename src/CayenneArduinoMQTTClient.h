@@ -74,7 +74,10 @@ public:
 	* @param unit  Measurement unit
 	*/
 	template <typename T>
-	void virtualWrite(unsigned int channel, const T& data, const char* type = NULL, const char* unit = NULL);
+	void virtualWrite(unsigned int channel, const T& data, const char* type = NULL, const char* unit = NULL)
+	{
+		publishData(DATA_TOPIC, channel, data, type, unit);
+	}
 
 	/**
 	* Sends an array of measurements to a Cayenne channel
@@ -83,7 +86,11 @@ public:
 	* @param values  Array of values to be sent
 	* @param type  Measurement type
 	*/
-	void virtualWrite(unsigned int channel, const CayenneDataArray& values, const char* type);
+	void virtualWrite(unsigned int channel, const CayenneDataArray& values, const char* type)
+	{
+		publishData(DATA_TOPIC, channel, values.getArray(), values.getCount(), type);
+	}
+
 
 #ifdef CAYENNE_USING_PROGMEM
 	/**
@@ -203,8 +210,6 @@ public:
 	*/
 	static void enableChannel(uint32_t channelArray[], uint8_t channel, bool enable);
 
-private:
-
 	/**
 	* Publish data using specified topic suffix
 	* @param topic Cayenne topic
@@ -214,7 +219,10 @@ private:
 	* @param subkey Optional subkey to use for a key,subkey=data pair
 	*/
 	template <typename T>
-	static void publishData(CayenneTopic topic, unsigned int channel, const T& data, const char* key = NULL, const char* subkey = NULL);
+		static void publishData(CayenneTopic topic, unsigned int channel, const T& data, const char* key = NULL, const char* subkey = NULL);
+
+private:
+
 
 	/**
 	* Publish value array using specified topic suffix
